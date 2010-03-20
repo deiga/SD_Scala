@@ -1,0 +1,1 @@
+def muotoile(muotoilija: String => String, sanat: List[String]) 
