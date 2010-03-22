@@ -5,7 +5,7 @@ class Translator() {
     
     def put(key: String, value: String) {
         var newVals = storage.getOrElseUpdate(key, List(""))
-        if (newVals != 1 && newVals(0) == "" ) {
+        if (newVals != 1 && newVals(0) != "" ) {
             newVals = value :: newVals
         } else {
             newVals = List(value)
@@ -16,9 +16,16 @@ class Translator() {
     def get(key: String): List[String] = {
         return storage(key)
     }
+    
+    override def toString(): String = {
+        return storage.toString()
+    }
 }
 
 object TranslatorRunner extends Application {
     val temp = new Translator()
-    temp.put("lol", "nuubz")
+    temp.put("Ovi", "Door")
+    temp.put("Kiekko", "Puck")
+    temp.put("Kiekko", "Disk")
+    println(temp)
 }
