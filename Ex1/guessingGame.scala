@@ -13,8 +13,8 @@ class GuessingGame {
     }
 
     def randomNumber(): Int = {
-        val number = Math.random
-        number.toInt * 9
+        val number = Math.random * 10
+        number.toInt
     }
     
     def makeGuess(turn: Int) = {

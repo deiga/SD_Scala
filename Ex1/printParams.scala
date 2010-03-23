@@ -3,4 +3,6 @@ for (arg <- args) {
     argsList = arg :: argsList
 }
 
-println(argsList.sort((a: String, b: String) => a < b ))
+argsList.sort((a: String, b: String) => a < b ).foreach(println)
+
+args.toList.sort(_<_).foreach(println)
