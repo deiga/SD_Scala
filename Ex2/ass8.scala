@@ -5,7 +5,11 @@ class MinMax() {
     var reset: Boolean = true
     
     def kirjaaLampotila(lampo: Double): Unit = {
-        reset = false
+        if (reset) {
+            reset = false
+            max = lampo
+            min = lampo
+        }
         if (lampo > max) max = lampo
         if (lampo < min) min = lampo
     }
