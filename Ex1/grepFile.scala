@@ -11,7 +11,7 @@ class GrepFile(filename: String) {
         count = 0
         for (line <- fileRepeater.getLines) {
             count += 1
-            if (searchString != "" && line.containsSlice(searchString)) {
+            if (searchString != "" && line.contains(searchString)) {
                 print(count + ": " + line)
             }
         }
