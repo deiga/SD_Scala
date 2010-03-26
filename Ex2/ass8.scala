@@ -10,17 +10,11 @@ class MinMax() {
         if (lampo < min) min = lampo
     }
     
-    def getMinimi(): Double = {
-        return min
-    }
+    def getMinimi(): Double = min
     
-    def getMaksimi(): Double = {
-        return max
-    }
+    def getMaksimi(): Double = max
     
-    def onAlkutilassa(): Boolean = {
-        return reset
-    }
+    def onAlkutilassa(): Boolean = reset
     
     def asetaAlkutilaan(): Unit = {
         reset = true

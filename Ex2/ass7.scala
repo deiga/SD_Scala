@@ -4,17 +4,11 @@ class Sekunttilaskuri() {
     private var minutes = 0
     private var hours   = 0
     
-    def getSekunnit(): Int = {
-        return seconds
-    }
+    def getSekunnit(): Int = seconds
     
-    def getMinuutit(): Int = {
-        return minutes
-    }
+    def getMinuutit(): Int = minutes
     
-    def getTunnit(): Int = {
-        return hours
-    }
+    def getTunnit(): Int = hours
     
     def lisaaSekunti(): Unit = {
         seconds += 1
@@ -35,6 +29,10 @@ class Sekunttilaskuri() {
         return hours + ":" + minutes + ":" + seconds
     }
     
+}
+
+object Sekunttilaskuri {
+    def apply() = new Sekunttilaskuri()
 }
 
 object TimerRunner extends Application {
