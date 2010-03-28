@@ -27,7 +27,20 @@ class ComplexNumber(r: Double, i: Double) {
     
     override def toString(): String = {
         var tmpString = real
-        if 
+        if (Math.signum(imaginary) == -1) {
+            tmpString + "" + imaginary + "i"
+        } else {
+            tmpString + "+" + imaginary + "i"
+        }
     }
     
+}
+
+object ComplexTester extends Application {
+    val complexTest = new ComplexNumber(1.4, 3.14)
+    println(complexTest)
+    println(complexTest + new ComplexNumber(3.1,-6.432133123))
+    println(complexTest - new ComplexNumber(3.1,-6.432133123))
+    println(complexTest * new ComplexNumber(3.1,-6.432133123))
+    println(complexTest / new ComplexNumber(3.1,-6.432133123))
 }
