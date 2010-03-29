@@ -1,9 +1,10 @@
 
 class Protozoan() {
     val serial = Protozoan.orderNumber
+    private val nukleotide = Array('A', 'C', 'G', 'T')
     Protozoan.orderNumber += 1
     var genome = generateGenome()
-    private val nukleotide = Array('A', 'C', 'G', 'T')
+    
     
     def this(genotype: List[Char]) = {
         this()
@@ -12,7 +13,7 @@ class Protozoan() {
     
     def generateGenome(): List[Char] =  {
         var tmpGenome = new Array[Char](10)
-        for (i <- 0 to 10) {
+        for (i <- 0 until 10) {
             tmpGenome(i) = randomNukleotide()
         }  
         return tmpGenome.toList
@@ -27,7 +28,7 @@ class Protozoan() {
     
     def mate(that: Protozoan): Protozoan = {
         val newGenome = new Array[Char](10)
-        for (i <- 0 to 10) {
+        for (i <- 0 until 10) {
             if (Math.random >= 0.5) {
                 newGenome(i) = genome(i)
             } else {
@@ -45,7 +46,7 @@ class Protozoan() {
             rtrnString += item + " "
         }
         
-        return rtrnString
+        return rtrnString + "\n"
     }
     
 }
@@ -55,5 +56,10 @@ object Protozoan {
 }
 
 object Geenilaboratorio extends Application {
-    
+    val origin = new Protozoan
+    println(origin)
+    val splir = origin.split
+    println(splir)
+    val paired = origin.mate(new Protozoan)
+    println(paired)
 }
