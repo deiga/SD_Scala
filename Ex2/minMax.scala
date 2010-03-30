@@ -37,6 +37,8 @@ object MinMaxRunner extends Application {
     println(testMinMax)
     testMinMax.kirjaaLampotila(12.0)
     println(testMinMax)
+    testMinMax.asetaAlkutilaan()
+    println(testMinMax)
     testMinMax.kirjaaLampotila(1.0)
     println(testMinMax)
     testMinMax.kirjaaLampotila(-1.0)
