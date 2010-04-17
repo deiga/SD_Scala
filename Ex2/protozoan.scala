@@ -1,7 +1,6 @@
 
 class Protozoan() {
     val serial = Protozoan.orderNumber
-    private val nukleotide = Array('A', 'C', 'G', 'T')
     Protozoan.orderNumber += 1
     var genome = generateGenome()
     
@@ -21,7 +20,7 @@ class Protozoan() {
     
     def randomNukleotide(): Char = {
         val index = Math.random * 4
-        nukleotide(index.toInt)
+        Protozoan.nukleotide(index.toInt)
     }
     
     def split(): Protozoan = new Protozoan(genome)
@@ -53,6 +52,7 @@ class Protozoan() {
 
 object Protozoan {
     private var orderNumber = 0
+    private val nukleotide = Array('A', 'C', 'G', 'T')
 }
 
 object Geenilaboratorio extends Application {
