@@ -11,7 +11,7 @@
 // lo tulostaa tilastotietoja ohjelman tästä käyttökerrasta ja lopettaa ohjelman suorituksen
 
 import scala.io.Source
-
+import java.io.File
 
 object Bash {
     
@@ -30,7 +30,7 @@ object Bash {
     }
     
     def grep(args: Array[String]) {
-        val files = args.slice(2,-1)
+        val files = args.slice(2,args.length)
         var searchString = args(1)
         for (file <- files) {
             var fileRepeater = Source.fromFile(file)
@@ -54,6 +54,10 @@ object Bash {
     }
     
     def find(pattern: String) {
-        
+        for (file <- new File(".").listFiles) {
+            if (file.getName().containsSlice(pattern)) {
+                println(file)
+            }
+        }
     }
 }
