@@ -11,23 +11,45 @@
 // lo tulostaa tilastotietoja ohjelman tästä käyttökerrasta ja lopettaa ohjelman suorituksen
 
 import scala.io.Source
-import java.io.File
 
 object Bash {
     
     def main(args: Array[String]) {
-        val temp = args(0)
-        temp match {
-            case "find" =>
-                find(args(1));
-            case "grep" =>
-                grep(args);
-            case "ls" =>
-                ls(args);
-            case "lo" =>
-                lo
+        var continue = true
+        var temp = ""
+        var count = 0
+        while (continue) {
+            println("Scala shell:\nPlease insert commands (find, grep, ls, lo)")
+            temp = Console.readLine("> ")
+            val args = temp.split(" ")
+            val command = args(0)
+            command match {
+                case "find" =>
+                    ls.filesContaining(args(1))
+                case "grep" =>
+                    grep(args);
+                case "ls" =>
+                    val command = if (args.length > 1) args(1) else ""
+                    command match {
+                        case "-e" =>
+                            ls.filesEnding(args(2))
+                        case "-b" =>
+                            ls.filesBeginning(args(2))
+                        case "-c" =>
+                            ls.filesContaining(args(2))
+                        case _ =>
+                            ls.files
+                    }
+                case "lo" =>
+                    continue = lo(count);
+                case _ =>
+                    ;
+            }
+            count += 1
         }
     }
+    
+    private def filesHere = (new java.io.File(".")).listFiles
     
     def grep(args: Array[String]) {
         val files = args.slice(2,args.length)
@@ -45,19 +67,38 @@ object Bash {
         }
     }
     
-    def ls(args: Array[String]) {
+    object ls {
         
+        private def filesMatching(matcher: String => Boolean) = {
+            for (file <- filesHere; if matcher(file.getName)) {
+                println(file)
+            }
+        }
+                
+        def filesEnding(query: String) {
+            filesMatching(_.endsWith(query))
+        }
+        def filesBeginning(query: String) { 
+            filesMatching(_.startsWith(query))
+        }
+        def filesContaining(query: String) {
+             filesMatching(_.containsSlice(query))
+        }
+        def files {
+            for (file <- filesHere) {
+                println(file)
+            }
+        }
     }
     
-    def lo {
-        
+    def lo(times: Int): Boolean = {
+        println("Olet suorittanut " + times + " käskyä!")
+        return false
     }
     
     def find(pattern: String) {
-        for (file <- new File(".").listFiles) {
-            if (file.getName().containsSlice(pattern)) {
+        for (file <- filesHere; if (file.getName().containsSlice(pattern))) {
                 println(file)
-            }
         }
     }
 }
